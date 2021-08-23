@@ -4,6 +4,7 @@
 #include "Draw.h"
 #include "Grid.h"
 
+
 class Engine
 {
     public:
@@ -16,17 +17,14 @@ class Engine
         void logic();
         void init();
 
+
+
         Grid* grid;
         Draw* draw;
 
         bool isRunning = true;
 
         SDL_Event event;
-
-        enum KEYS
-        {
-            LEFT = 1 , DOWN , RIGHT , ROTATE
-        };
 
 };
 

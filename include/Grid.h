@@ -2,6 +2,8 @@
 #define GRID_H
 
 
+#include "definitions.h"
+
 #include <array>
 #include <string>
 #include <cstring>

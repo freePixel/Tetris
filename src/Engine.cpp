@@ -9,6 +9,8 @@ Engine::~Engine()
 
 void Engine::logic()
 {
+
+    //PROCESS EVENTS
     int KEY = 0;
     while(SDL_PollEvent(&event) > 0)
     {
@@ -35,8 +37,8 @@ void Engine::logic()
             }
             break;
         }
-
     }
+
 }
 void Engine::render()
 {
@@ -49,7 +51,7 @@ void Engine::run()
     {
         logic();
         render();
-        SDL_Delay(1000);
+        SDL_Delay(100);
     }
 
 }
