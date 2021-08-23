@@ -1,6 +1,6 @@
 # depslib dependency file v1.0
-1629743355 source:c:\users\tiago\documents\programação\c++\projetos\tetris\main.cpp
-	"Draw.h"
+1629756694 source:c:\users\tiago\documents\programação\c++\projetos\tetris\main.cpp
+	"Engine.h"
 
 1628610877 c:\users\tiago\documents\programação\c++\libs\sdl2\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -380,7 +380,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1629743493 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
+1629757107 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
 	"Draw.h"
 
 1629743511 c:\users\tiago\documents\programação\c++\projetos\tetris\include\draw.h
@@ -391,11 +391,18 @@
 	<string>
 	<iostream>
 
-1629743355 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\grid.cpp
+1629756784 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\grid.cpp
 	"Grid.h"
 
-1629742024 c:\users\tiago\documents\programação\c++\projetos\tetris\include\grid.h
+1629757691 c:\users\tiago\documents\programação\c++\projetos\tetris\include\grid.h
 	<array>
 	<string>
 	<cstring>
+
+1629757600 c:\users\tiago\documents\programação\c++\projetos\tetris\include\engine.h
+	"Draw.h"
+	"Grid.h"
+
+1629757691 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\engine.cpp
+	"Engine.h"
 

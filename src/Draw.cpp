@@ -8,7 +8,8 @@ Draw::Draw()
 
 Draw::~Draw()
 {
-
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(render);
 }
 
 void Draw::draw_grid(Grid& grid)

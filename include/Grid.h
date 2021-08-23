@@ -18,6 +18,7 @@ class Grid
         int get_value(int x , int y);
         void set_value(int x , int y , int value);
         void clear_value(int x , int y);
+        bool isFree(int x , int y);
 
 
 
@@ -27,6 +28,8 @@ class Grid
 
         int to1D(int x , int y);
 
+
+
 };
 
-#endif // GRID_H
+#endif

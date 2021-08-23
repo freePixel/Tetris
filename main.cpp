@@ -3,20 +3,12 @@ and may not be redistributed without written permission.*/
 
 //Using SDL, SDL_image, standard IO, and strings
 
-#include "Draw.h"
+#include "Engine.h"
 
 int main(int argc , char* argv[])
 {
-    Grid* grid = new Grid();
-
-    Draw draw;
-    while(true)
-    {
-        draw.draw_grid(*grid);
-        SDL_Delay(1000);
-
-    }
-    delete grid;
+    Engine game;
+    game.run();
     return 0;
 
 }

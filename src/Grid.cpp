@@ -3,7 +3,6 @@
 Grid::Grid()
 {
     std::memset(data , 0 , sizeof(data));
-    set_value(9,0,5);
 
 }
 
@@ -43,4 +42,9 @@ void Grid::clear_value(int x , int y)
 {
     int pos = to1D(x,y);
     data[pos] = 0;
+}
+
+bool Grid::isFree(int x , int y)
+{
+    return data[to1D(x,y)] == 0;
 }
