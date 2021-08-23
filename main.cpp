@@ -10,7 +10,6 @@ int main(int argc , char* argv[])
     Grid* grid = new Grid();
 
     Draw draw;
-
     while(true)
     {
         draw.draw_grid(*grid);

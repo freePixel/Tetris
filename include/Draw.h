@@ -19,7 +19,8 @@ class Draw
     protected:
 
     private:
-
+        const int WINDOW_X = 400;
+        const int WINDOW_Y = 800;
         SDL_Window* window = nullptr;
         SDL_Renderer* render = nullptr;
 
