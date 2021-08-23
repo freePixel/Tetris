@@ -9,11 +9,11 @@ enum KEYS
 
  enum COLOR
         {
-            REG = 1, GREEN , BLUE
+            REG = 1, GREEN , BLUE , BLACK
         };
 enum TYPE
         {
-            L , S , T
+            S , Z , L , J , SQUARE , I , T
         };
 
 struct v2d

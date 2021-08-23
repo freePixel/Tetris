@@ -7,6 +7,39 @@ Engine::~Engine()
     delete grid;
 }
 
+void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
+{
+    //delete previous active move and set new position
+    std::vector<v2d> data = active_piece->get_data();
+    v2d diff = active_piece->get_difference();
+    for(unsigned int i=0;i<data.size();i++)
+    {
+        v2d point = data.at(i);
+        grid->clear_value(point.x - diff.x , point.y - diff.y);
+    }
+    for(unsigned int i=0;i<data.size();i++)
+    {
+        v2d point = data.at(i);
+        grid->set_value(point.x , point.y , active_piece->get_color());
+    }
+}
+
+bool Engine::isValid()
+{
+    std::vector<v2d> data = active_piece->get_data();
+    for(unsigned int i=0;i<data.size();i++)
+    {
+        v2d point = data.at(i);
+        if(point.x < 0 || point.x >= Grid::DIM_X || point.y < 0 || point.y >= Grid::DIM_Y) return false;
+        if(!grid->isFree(point.x , point.y))
+        {
+            return false;
+        }
+    }
+    return true;
+
+}
+
 void Engine::logic()
 {
 
@@ -39,6 +72,7 @@ void Engine::logic()
         }
     }
 
+
 }
 void Engine::render()
 {
@@ -60,5 +94,7 @@ void Engine::init()
 {
     grid = new Grid();
     draw = new Draw();
+
+    active_piece = new Piece();
 
 }

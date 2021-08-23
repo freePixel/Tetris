@@ -24,13 +24,13 @@ int Grid::to1D(int x , int y)
 
 }
 
-int Grid::get_value(int x , int y)
+COLOR Grid::get_value(int x , int y)
 {
     int pos = to1D(x,y);
     return data[pos];
 }
 
-void Grid::set_value(int x , int y , int value)
+void Grid::set_value(int x , int y , COLOR value)
 {
     if(value <= 0 || value > 7) throw std::invalid_argument("Expected value between 1 and 7");
     int pos = to1D(x,y);
@@ -41,7 +41,7 @@ void Grid::set_value(int x , int y , int value)
 void Grid::clear_value(int x , int y)
 {
     int pos = to1D(x,y);
-    data[pos] = 0;
+    data[pos] = COLOR::BLACK;
 }
 
 bool Grid::isFree(int x , int y)

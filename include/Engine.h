@@ -3,7 +3,7 @@
 
 #include "Draw.h"
 #include "Grid.h"
-
+#include "Piece.h"
 
 class Engine
 {
@@ -18,9 +18,13 @@ class Engine
         void init();
 
 
+        bool isValid();
+        void confirmMove();
 
         Grid* grid;
         Draw* draw;
+
+        Piece* active_piece = nullptr;
 
         bool isRunning = true;
 

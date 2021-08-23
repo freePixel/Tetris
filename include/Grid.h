@@ -17,8 +17,8 @@ class Grid
 
         Grid();
         virtual ~Grid();
-        int get_value(int x , int y);
-        void set_value(int x , int y , int value);
+        COLOR get_value(int x , int y);
+        void set_value(int x , int y , COLOR value);
         void clear_value(int x , int y);
         bool isFree(int x , int y);
 
@@ -26,7 +26,7 @@ class Grid
 
 
     private:
-        int data[DIM_X * DIM_Y];
+        COLOR data[DIM_X * DIM_Y];
 
         int to1D(int x , int y);
 
