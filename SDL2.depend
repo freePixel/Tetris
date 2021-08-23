@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1629742148 source:c:\users\tiago\documents\programação\c++\projetos\tetris\main.cpp
+1629742282 source:c:\users\tiago\documents\programação\c++\projetos\tetris\main.cpp
 	"Draw.h"
 
 1628610877 c:\users\tiago\documents\programação\c++\libs\sdl2\x86_64-w64-mingw32\include\sdl2\sdl.h
@@ -380,7 +380,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1629742148 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
+1629742722 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
 	"Draw.h"
 
 1629742148 c:\users\tiago\documents\programação\c++\projetos\tetris\include\draw.h
@@ -391,7 +391,7 @@
 	<string>
 	<iostream>
 
-1629742036 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\grid.cpp
+1629742703 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\grid.cpp
 	"Grid.h"
 
 1629742024 c:\users\tiago\documents\programação\c++\projetos\tetris\include\grid.h

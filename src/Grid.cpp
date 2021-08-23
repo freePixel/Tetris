@@ -3,6 +3,8 @@
 Grid::Grid()
 {
     std::memset(data , 0 , sizeof(data));
+    set_value(0,0,5);
+
 }
 
 Grid::~Grid()
@@ -18,7 +20,7 @@ int Grid::to1D(int x , int y)
         throw std::overflow_error(message);
     }
     else{
-        return x + DIM_Y * y;
+        return x + DIM_X * y;
     }
 
 }

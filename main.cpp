@@ -10,12 +10,12 @@ int main(int argc , char* argv[])
     Grid* grid = new Grid();
 
     Draw draw;
-    std::cout << grid->get_value(3,0);
+
     while(true)
     {
         draw.draw_grid(*grid);
         SDL_Delay(1000);
-        std::cout << grid->get_value(2,2);
+
     }
     delete grid;
     return 0;
