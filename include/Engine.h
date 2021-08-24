@@ -20,6 +20,7 @@ class Engine
 
         bool isValid();
         void confirmMove();
+        void clearGridPiece(COLOR color);
 
         Grid* grid;
         Draw* draw;
@@ -29,6 +30,9 @@ class Engine
         bool isRunning = true;
 
         SDL_Event event;
+
+        int DELAY = 100;
+        int ELAPSED = 0;
 
 
 };

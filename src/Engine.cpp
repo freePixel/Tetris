@@ -6,17 +6,19 @@ Engine::~Engine()
     delete draw;
     delete grid;
 }
-
-void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
+void Engine::clearGridPiece(COLOR color)
 {
-    //delete previous active move and set new position
     std::vector<v2d> data = active_piece->get_data();
     v2d diff = active_piece->get_difference();
     for(unsigned int i=0;i<data.size();i++)
     {
         v2d point = data.at(i);
-        grid->clear_value(point.x - diff.x , point.y - diff.y);
+        grid->set_value(point.x - diff.x , point.y - diff.y , color);
     }
+}
+void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
+{
+    std::vector<v2d> data = active_piece->get_data();
     for(unsigned int i=0;i<data.size();i++)
     {
         v2d point = data.at(i);
@@ -24,8 +26,10 @@ void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
     }
 }
 
+
 bool Engine::isValid()
 {
+    clearGridPiece(COLOR::BLACK);
     std::vector<v2d> data = active_piece->get_data();
     for(unsigned int i=0;i<data.size();i++)
     {
@@ -36,6 +40,7 @@ bool Engine::isValid()
         {
             return false;
         }
+
     }
     return true;
 
@@ -72,18 +77,22 @@ void Engine::logic()
             break;
         }
     }
-    if(active_piece == nullptr)
+
+
+    if(ELAPSED % 1000 == 0)
     {
-        active_piece = new Piece();
-        return;
+        active_piece->translate(KEYS::DOWN);
+        if(isValid())
+        {
+            confirmMove();
+        }
+        else{
+            clearGridPiece(active_piece->get_color());
+            active_piece->~Piece();
+            active_piece = new Piece();
+        }
     }
 
-    active_piece->translate(KEYS::DOWN);
-    bool valid = isValid();
-    if(valid)
-    {
-        confirmMove();
-    }
 
 
 }
@@ -98,7 +107,8 @@ void Engine::run()
     {
         logic();
         render();
-        SDL_Delay(100);
+        ELAPSED += DELAY;
+        SDL_Delay(DELAY);
     }
 
 }

@@ -43,6 +43,7 @@ std::vector<v2d> Piece::get_data()
 v2d Piece::get_difference()
 {
     return difference;
+
 }
 
 void Piece::translate(KEYS dir)
