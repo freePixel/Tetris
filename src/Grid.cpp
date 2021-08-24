@@ -29,7 +29,7 @@ int Grid::to1D(int x , int y)
 
 void Grid::shiftGrid()
 {
-    for(int y = 1; y < DIM_Y; y++)
+    for(int y = DIM_Y-1; y > 1; y--)
     {
         for(int x=0;x<DIM_X;x++)
         {
