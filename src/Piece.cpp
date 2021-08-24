@@ -21,7 +21,7 @@ std::vector<v2d> Piece::get_lastPosition()
 Piece::Piece()
 {
     pieceCounter++;
-    type = pieceCounter % 7;
+    type = rand() % 7;
 
     color = (COLOR)(pieceCounter % 4 + 1);
     switch(type)

@@ -28,7 +28,7 @@ Draw::~Draw()
 void Draw::draw_grid(Grid& grid, int score)
 {
     std::string last = score_info;
-    score_info = "Score - " + std::to_string(score);
+    score_info = get_score_string(score);
     if(last != score_info) renderScore = true;
     int dx = (400) / Grid::DIM_X;
     int dy = (780) / Grid::DIM_Y;
@@ -72,6 +72,16 @@ void Draw::draw_grid(Grid& grid, int score)
     delete rect;
     SDL_SetRenderDrawColor(render, 0,0,0,0);
     SDL_RenderPresent(render);
+}
+
+std::string Draw::get_score_string(int score)
+{
+    int digits = 0;
+    if(score != 0) digits = (int)log10(score);
+    int left = 6 - digits;
+    std::string str = "";
+    for(int i=0;i<left;i++) str += "0";
+    return str + std::to_string(score);
 }
 
 void Draw::reload_score()

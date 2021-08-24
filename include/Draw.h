@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <math.h>
 #include <SDL_ttf.h>
 class Draw
 {
@@ -26,6 +27,7 @@ class Draw
         std::string score_info;
         void draw_border();
         void reload_score();
+        std::string get_score_string(int score);
         TTF_Font *font = nullptr;
         SDL_Texture* text = nullptr;
         bool renderScore = false;
