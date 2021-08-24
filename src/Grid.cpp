@@ -2,7 +2,7 @@
 
 Grid::Grid()
 {
-    std::memset(data , 0 , sizeof(data));
+    std::memset(data , COLOR::BLACK , sizeof(data));
 
 }
 

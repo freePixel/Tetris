@@ -71,6 +71,12 @@ void Engine::logic()
             break;
         }
     }
+    if(active_piece == nullptr)
+    {
+        active_piece = new Piece();
+        return;
+    }
+
 
 
 }

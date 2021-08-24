@@ -17,19 +17,30 @@ void Draw::draw_grid(Grid& grid)
     int dx = WINDOW_X / Grid::DIM_X;
     int dy = WINDOW_Y / Grid::DIM_Y;
     SDL_RenderClear(render);
-    SDL_SetRenderDrawColor(render, 255,0,0,0);
     for(int y=0;y<Grid::DIM_Y;y++)
     {
 
         for(int x=0;x<Grid::DIM_X;x++)
         {
-            if(grid.get_value(x,y) != 0)
+            switch(grid.get_value(x , y))
             {
-
-                SDL_FRect* rect = new SDL_FRect{(float)dx*x , (float)dy*y , (float)dx , (float)dy};
-                SDL_RenderFillRectF(render,rect);
-                delete rect;
+            case COLOR::BLACK:
+                SDL_SetRenderDrawColor(render, 0,0,0,0);
+                break;
+            case COLOR::RED:
+                SDL_SetRenderDrawColor(render, 255,0,0,0);
+                break;
+            case COLOR::GREEN:
+                SDL_SetRenderDrawColor(render, 0,255,0,0);
+                break;
+            case COLOR::BLUE:
+                SDL_SetRenderDrawColor(render, 0,0,255,0);
+                break;
             }
+            SDL_FRect* rect = new SDL_FRect{(float)dx*x , (float)dy*y , (float)dx , (float)dy};
+            SDL_RenderFillRectF(render,rect);
+            delete rect;
+
 
         }
     }
