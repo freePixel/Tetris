@@ -3,7 +3,12 @@
 void Piece::undoMove()
 {
     data = last;
+}
 
+void Piece::undoRotation()
+{
+    data = last;
+    rotation_value--;
 }
 
 std::vector<v2d> Piece::get_lastPosition()
@@ -13,8 +18,8 @@ std::vector<v2d> Piece::get_lastPosition()
 
 Piece::Piece()
 {
-    //type = rand() % 7;
-    type = TYPE::S;
+    type = rand() % 7;
+
     color = (COLOR)(rand() % 4 + 1);
     switch(type)
     {

@@ -80,7 +80,7 @@ void Engine::doMove(KEYS direction)
         }
         else{
             active_piece->undoMove();
-            clearGridPiece(active_piece->get_color());
+            confirmMove();
         }
     }
     if(direction == KEYS::ROTATE)
@@ -91,7 +91,8 @@ void Engine::doMove(KEYS direction)
             confirmMove();
         }
         else{
-            active_piece->undoMove();
+            active_piece->undoRotation();
+            confirmMove();
         }
     }
 }

@@ -12,6 +12,7 @@ class Piece
         virtual ~Piece();
         void translate(KEYS dir);
         void undoMove();
+        void undoRotation();
         std::vector<v2d> get_lastPosition();
         COLOR get_color();
         std::vector<v2d> get_data();
