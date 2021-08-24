@@ -12,17 +12,21 @@ class Piece
         virtual ~Piece();
         void translate(KEYS dir);
         void undoMove();
+        std::vector<v2d> get_lastPosition();
         COLOR get_color();
         std::vector<v2d> get_data();
-        v2d get_difference();
+        void doRotation();
     protected:
 
     private:
-        v2d difference = {0,0};
         int type;
         COLOR color;
-        v2d position = {0,0};
         std::vector<v2d> data;
+        std::vector<v2d> last;
+        std::vector<v2d> base;
+        std::vector<v2d> rotation_list[4];
+        v2df center;
+        int rotation_value = 0;
 
 
 };

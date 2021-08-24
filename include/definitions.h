@@ -25,4 +25,10 @@ struct v2d
     int y = 0;
 };
 
+struct v2df
+{
+    float x = 0;
+    float y = 0;
+};
+
 #endif // DEFINITIONS_H_INCLUDED

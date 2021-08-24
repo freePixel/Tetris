@@ -2,78 +2,121 @@
 
 void Piece::undoMove()
 {
-    position.x -= difference.x;
-    position.y -= difference.y;
-    difference = {0,0};
+    data = last;
+
+}
+
+std::vector<v2d> Piece::get_lastPosition()
+{
+    return last;
 }
 
 Piece::Piece()
 {
     type = rand() % 7;
+    //type = TYPE::SQUARE;
     color = (COLOR)(rand() % 4 + 1);
     switch(type)
     {
     case TYPE::S:
         data = {{0,1},{1,1},{1,0},{2,0}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+
         break;
     case TYPE::Z:
         data = {{0,0},{1,0},{1,1},{2,1}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
         break;
     case TYPE::L:
         data = {{0,1},{0,0},{1,0},{2,0}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
         break;
     case TYPE::J:
         data = {{0,0},{1,0},{2,0},{2,1}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
         break;
     case TYPE::SQUARE:
         data = {{0,0},{0,1},{1,0},{1,1}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
         break;
     case TYPE::I:
         data = {{0,0},{1,0},{2,0},{3,0}};
+        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
         break;
     case TYPE::T:
-        data = {{1,0},{0,1},{1,1},{2,1}};
+        data = {{0,1},{1,1},{1,0},{2,1}};
+        rotation_list[0] = {{-1,-1},{0,0},{1,-1},{1,1}};
+        rotation_list[1] = {{1,-1},{0,0},{1,1},{-1,1}};
+        rotation_list[2] = {{1,1},{0,0},{-1,1},{-1,-1}};
+        rotation_list[3] = {{-1,1},{0,0},{-1,-1},{1,-1}};
         break;
     }
+
 }
 std::vector<v2d> Piece::get_data()
 {
-    std::vector<v2d> vec;
-    for(int i=0;i<data.size();i++)
-    {
-        v2d point = data.at(i);
-        vec.push_back({point.x + position.x , point.y + position.y});
-    }
-    return vec;
+    return data;
 }
 
-v2d Piece::get_difference()
-{
-    return difference;
-
-}
 
 void Piece::translate(KEYS dir)
 {
-    if(dir == KEYS::LEFT)
+    last.clear();
+    v2d diff = {0,0};
+    for(int i=0;i<data.size();i++) last.push_back(data.at(i));
+
+    if(dir == KEYS::LEFT) diff = {-1,0};
+
+    if(dir == KEYS::RIGHT) diff = {1,0};
+
+    if(dir == KEYS::DOWN) diff = {0,1};
+
+    for(int i=0;i<data.size();i++)
     {
-        difference = {-1 , 0};
-        position.x--;
+        data.at(i).x += diff.x;
+        data.at(i).y += diff.y;
     }
-    if(dir == KEYS::RIGHT)
-    {
-        difference = {1 , 0};
-        position.x++;
-    }
-    if(dir == KEYS::DOWN)
-    {
-        difference = {0 , 1};
-        position.y++;
-    }
+
 }
 
 
+void Piece::doRotation()
+{
+    rotation_value++;
+    if(rotation_value > 3)
+    {
+        rotation_value = 0;
+    }
+    last.clear();
+    for(int i=0;i<data.size();i++) last.push_back(data.at(i));
 
+    for(int i=0;i<data.size();i++)
+    {
+
+        data.at(i).x += rotation_list[rotation_value].at(i).x;
+        data.at(i).y += rotation_list[rotation_value].at(i).y;
+    }
+
+
+}
 
 Piece::~Piece()
 {

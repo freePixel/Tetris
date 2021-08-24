@@ -8,16 +8,16 @@ Engine::~Engine()
 }
 void Engine::clearGridPiece(COLOR color)
 {
-    std::vector<v2d> data = active_piece->get_data();
-    v2d diff = active_piece->get_difference();
+    std::vector<v2d> data = active_piece->get_lastPosition();
     for(unsigned int i=0;i<data.size();i++)
     {
         v2d point = data.at(i);
-        grid->set_value(point.x - diff.x , point.y - diff.y , color);
+        grid->set_value(point.x, point.y, color);
     }
 }
 void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
 {
+
     std::vector<v2d> data = active_piece->get_data();
     for(unsigned int i=0;i<data.size();i++)
     {
@@ -48,9 +48,10 @@ bool Engine::isValid()
 
 void Engine::doMove(KEYS direction)
 {
-    active_piece->translate(direction);
+
     if(direction == KEYS::DOWN)
     {
+        active_piece->translate(KEYS::DOWN);
         if(isValid())
         {
             confirmMove();
@@ -63,6 +64,8 @@ void Engine::doMove(KEYS direction)
     }
     if(direction == KEYS::LEFT || direction == KEYS::RIGHT)
     {
+
+        active_piece->translate(direction);
         if(isValid())
         {
             confirmMove();
@@ -70,6 +73,17 @@ void Engine::doMove(KEYS direction)
         else{
             active_piece->undoMove();
             clearGridPiece(active_piece->get_color());
+        }
+    }
+    if(direction == KEYS::ROTATE)
+    {
+        active_piece->doRotation();
+        if(isValid())
+        {
+            confirmMove();
+        }
+        else{
+            active_piece->undoMove();
         }
     }
 }
