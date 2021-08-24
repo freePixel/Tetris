@@ -5,6 +5,7 @@
 #include "definitions.h"
 
 #include <array>
+#include <iostream>
 #include <string>
 #include <cstring>
 

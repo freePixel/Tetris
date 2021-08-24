@@ -50,10 +50,15 @@
 			<Add directory="C:/Users/tiago/Documents/programação/c++/libs/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/Draw.h" />
+		<Unit filename="include/Engine.h" />
 		<Unit filename="include/Grid.h" />
+		<Unit filename="include/Piece.h" />
+		<Unit filename="include/definitions.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Draw.cpp" />
+		<Unit filename="src/Engine.cpp" />
 		<Unit filename="src/Grid.cpp" />
+		<Unit filename="src/Piece.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

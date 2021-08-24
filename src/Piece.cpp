@@ -2,13 +2,26 @@
 
 Piece::Piece()
 {
-    type = rand() % 7;
+    type = rand() % 3;
+    color = COLOR::BLUE;
     switch(type)
     {
-    case TYPE::L:
+    case TYPE::S:
         data = {{0,1},{0,0},{1,0},{2,0},{3,0}};
         break;
-    case TYPE::S:
+    case TYPE::Z:
+        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        break;
+    case TYPE::L:
+        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        break;
+    case TYPE::J:
+        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        break;
+    case TYPE::SQUARE:
+        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        break;
+    case TYPE::I:
         data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
         break;
     case TYPE::T:

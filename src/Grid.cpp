@@ -2,7 +2,10 @@
 
 Grid::Grid()
 {
-    std::memset(data , COLOR::BLACK , sizeof(data));
+    for(int i=0;i<DIM_X * DIM_Y ; i++)
+    {
+        data[i] = COLOR::BLACK;
+    }
 
 }
 
@@ -46,5 +49,8 @@ void Grid::clear_value(int x , int y)
 
 bool Grid::isFree(int x , int y)
 {
-    return data[to1D(x,y)] == 0;
+    if(data[to1D(x , y)] == COLOR::BLACK) return true;
+    else{
+        return false;
+    }
 }

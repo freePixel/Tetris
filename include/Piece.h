@@ -2,6 +2,7 @@
 #define PIECE_H
 
 #include <vector>
+#include <iostream>
 #include "definitions.h"
 #include <stdlib.h>
 class Piece

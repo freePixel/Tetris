@@ -13,7 +13,7 @@ enum KEYS
         };
 enum TYPE
         {
-            S , Z , L , J , SQUARE , I , T
+            S = 0 , Z , L , J , SQUARE , I , T
         };
 
 struct v2d

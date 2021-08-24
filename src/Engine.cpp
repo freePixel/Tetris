@@ -30,6 +30,7 @@ bool Engine::isValid()
     for(unsigned int i=0;i<data.size();i++)
     {
         v2d point = data.at(i);
+
         if(point.x < 0 || point.x >= Grid::DIM_X || point.y < 0 || point.y >= Grid::DIM_Y) return false;
         if(!grid->isFree(point.x , point.y))
         {
@@ -77,6 +78,12 @@ void Engine::logic()
         return;
     }
 
+    active_piece->translate(KEYS::DOWN);
+    bool valid = isValid();
+    if(valid)
+    {
+        confirmMove();
+    }
 
 
 }
