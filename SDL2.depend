@@ -380,21 +380,22 @@
 	"begin_code.h"
 	"close_code.h"
 
-1629812562 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
+1629840671 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\draw.cpp
 	"Draw.h"
 
-1629759533 c:\users\tiago\documents\programação\c++\projetos\tetris\include\draw.h
+1629839469 c:\users\tiago\documents\programação\c++\projetos\tetris\include\draw.h
 	"Grid.h"
 	<SDL.h>
 	<SDL_image.h>
 	<stdio.h>
 	<string>
 	<iostream>
+	<SDL_ttf.h>
 
 1629828527 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\grid.cpp
 	"Grid.h"
 
-1629824173 c:\users\tiago\documents\programação\c++\projetos\tetris\include\grid.h
+1629840798 c:\users\tiago\documents\programação\c++\projetos\tetris\include\grid.h
 	"definitions.h"
 	<array>
 	<iostream>
@@ -406,17 +407,22 @@
 	"Grid.h"
 	"Piece.h"
 
-1629828123 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\engine.cpp
+1629830408 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\engine.cpp
 	"Engine.h"
 
-1629828164 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\piece.cpp
+1629840575 source:c:\users\tiago\documents\programação\c++\projetos\tetris\src\piece.cpp
 	"Piece.h"
 
-1629828135 c:\users\tiago\documents\programação\c++\projetos\tetris\include\piece.h
+1629840537 c:\users\tiago\documents\programação\c++\projetos\tetris\include\piece.h
 	<vector>
 	<iostream>
 	"definitions.h"
 	<stdlib.h>
 
 1629815607 c:\users\tiago\documents\programação\c++\projetos\tetris\include\definitions.h
+
+1547325890 c:\users\tiago\documents\programação\c++\libs\sdl2_ttf\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
 

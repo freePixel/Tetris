@@ -142,7 +142,7 @@ void Engine::logic()
 }
 void Engine::render()
 {
-    draw->draw_grid(*grid);
+    draw->draw_grid(*grid , score);
 }
 void Engine::run()
 {

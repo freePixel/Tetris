@@ -28,7 +28,7 @@ class Grid
 
     private:
         COLOR data[DIM_X * DIM_Y];
-        void shiftGrid();
+        void shiftGrid(int h);
         int to1D(int x , int y);
 
 

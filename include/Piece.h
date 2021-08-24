@@ -17,9 +17,9 @@ class Piece
         COLOR get_color();
         std::vector<v2d> get_data();
         void doRotation();
-    protected:
 
     private:
+        static int pieceCounter;
         int type;
         COLOR color;
         std::vector<v2d> data;

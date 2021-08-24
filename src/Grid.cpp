@@ -27,9 +27,9 @@ int Grid::to1D(int x , int y)
 
 }
 
-void Grid::shiftGrid()
+void Grid::shiftGrid(int h)
 {
-    for(int y = DIM_Y-1; y > 1; y--)
+    for(int y = h; y > 0; y--)
     {
         for(int x=0;x<DIM_X;x++)
         {
@@ -55,7 +55,7 @@ int Grid::simplifyGrid()
                 {
                     data[to1D(i , y)] = COLOR::BLACK;
                 }
-                shiftGrid();
+                shiftGrid(y);
                 score += 100;
             }
         }

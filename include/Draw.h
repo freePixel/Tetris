@@ -7,22 +7,28 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-
+#include <SDL_ttf.h>
 class Draw
 {
     public:
         Draw();
         virtual ~Draw();
 
-        void draw_grid(Grid& grid);
+        void draw_grid(Grid& grid , int score);
 
     protected:
 
     private:
-        const int WINDOW_X = 400;
+        const int WINDOW_X = 600;
         const int WINDOW_Y = 800;
         SDL_Window* window = nullptr;
         SDL_Renderer* render = nullptr;
+        std::string score_info;
+        void draw_border();
+        void reload_score();
+        TTF_Font *font = nullptr;
+        SDL_Texture* text = nullptr;
+        bool renderScore = false;
 
 
 };

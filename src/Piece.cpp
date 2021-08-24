@@ -11,6 +11,8 @@ void Piece::undoRotation()
     rotation_value--;
 }
 
+int Piece::pieceCounter = rand() % 100;
+
 std::vector<v2d> Piece::get_lastPosition()
 {
     return last;
@@ -18,9 +20,10 @@ std::vector<v2d> Piece::get_lastPosition()
 
 Piece::Piece()
 {
-    type = rand() % 7;
+    pieceCounter++;
+    type = pieceCounter % 7;
 
-    color = (COLOR)(rand() % 4 + 1);
+    color = (COLOR)(pieceCounter % 4 + 1);
     switch(type)
     {
     case TYPE::S:
