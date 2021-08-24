@@ -60,6 +60,14 @@ void Engine::doMove(KEYS direction)
             clearGridPiece(active_piece->get_color());
             active_piece->~Piece();
             active_piece = new Piece();
+            score += grid->simplifyGrid();
+            if(!isValid())
+            {
+                isRunning = false;
+            }
+            else{
+                confirmMove();
+            }
         }
     }
     if(direction == KEYS::LEFT || direction == KEYS::RIGHT)
@@ -87,6 +95,7 @@ void Engine::doMove(KEYS direction)
         }
     }
 }
+
 
 void Engine::logic()
 {
@@ -153,5 +162,7 @@ void Engine::init()
     draw = new Draw();
 
     active_piece = new Piece();
+
+    confirmMove();
 
 }

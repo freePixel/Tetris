@@ -27,6 +27,41 @@ int Grid::to1D(int x , int y)
 
 }
 
+void Grid::shiftGrid()
+{
+    for(int y = 1; y < DIM_Y; y++)
+    {
+        for(int x=0;x<DIM_X;x++)
+        {
+            data[to1D(x , y)] = data[to1D(x , y-1)];
+        }
+    }
+}
+
+int Grid::simplifyGrid()
+{
+    int score = 0;
+    for(int y=0;y<DIM_Y;y++)
+    {
+        for(int x=0;x<DIM_X;x++)
+        {
+            if(data[to1D(x , y)] == COLOR::BLACK)
+            {
+                break;
+            }
+            if(x == DIM_X - 1)
+            {
+                for(int i=0;i<DIM_X;i++)
+                {
+                    data[to1D(i , y)] = COLOR::BLACK;
+                }
+                shiftGrid();
+                score += 100;
+            }
+        }
+    }
+    return score;
+}
 COLOR Grid::get_value(int x , int y)
 {
     int pos = to1D(x,y);

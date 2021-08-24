@@ -15,7 +15,7 @@ class Grid
         static const int  DIM_X = 10;
         static const int  DIM_Y = 20;
 
-
+        int simplifyGrid();
         Grid();
         virtual ~Grid();
         COLOR get_value(int x , int y);
@@ -28,7 +28,7 @@ class Grid
 
     private:
         COLOR data[DIM_X * DIM_Y];
-
+        void shiftGrid();
         int to1D(int x , int y);
 
 

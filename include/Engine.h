@@ -26,7 +26,7 @@ class Engine
 
         Grid* grid;
         Draw* draw;
-
+        int score = 0;
         Piece* active_piece = nullptr;
 
         bool isRunning = true;
@@ -34,7 +34,7 @@ class Engine
         SDL_Event event;
 
         int DELAY = 100;
-        int ELAPSED = 0;
+        int ELAPSED = 100;
 
 
 };
