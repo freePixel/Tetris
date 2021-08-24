@@ -13,60 +13,55 @@ std::vector<v2d> Piece::get_lastPosition()
 
 Piece::Piece()
 {
-    type = rand() % 7;
-    //type = TYPE::SQUARE;
+    //type = rand() % 7;
+    type = TYPE::S;
     color = (COLOR)(rand() % 4 + 1);
     switch(type)
     {
     case TYPE::S:
         data = {{0,1},{1,1},{1,0},{2,0}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{1,-1},{0,0},{1,1},{0,2}},
+                        {{1,1},{0,0},{-1,1},{-2,0}},
+                        {{-1,1},{0,0},{-1,-1},{0,-2}},
+                        {{-1,-1},{0,0},{1,-1},{2,0}}};
 
         break;
-    case TYPE::Z:
+        case TYPE::Z:
         data = {{0,0},{1,0},{1,1},{2,1}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{2,0},{1,1},{0,0},{-1,1}},
+                        {{0,2},{-1,1},{0,0},{-1,-1}},
+                        {{-2,0},{-1,-1},{0,0},{1,-1}},
+                        {{0,-2},{1,-1},{0,0},{1,1}}};
         break;
     case TYPE::L:
         data = {{0,1},{0,0},{1,0},{2,0}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{0,-2},{1,-1},{0,0},{-1,1}},
+                        {{2,0},{1,1},{0,0},{-1,-1}},
+                        {{0,2},{-1,1},{0,0},{1,-1}},
+                        {{-2,0},{-1,-1},{0,0},{1,1}}};
         break;
     case TYPE::J:
         data = {{0,0},{1,0},{2,0},{2,1}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{1,-1},{0,0},{-1,1},{-2,0}},
+                        {{1,1},{0,0},{-1,-1},{0,-2}},
+                        {{-1,1},{0,0},{1,-1},{2,0}},
+                        {{-1,-1},{0,0},{1,1},{0,2}}};
         break;
     case TYPE::SQUARE:
         data = {{0,0},{0,1},{1,0},{1,1}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{0,0},{0,0},{0,0},{0,0}}};
         break;
     case TYPE::I:
         data = {{0,0},{1,0},{2,0},{3,0}};
-        rotation_list[0] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[1] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[2] = {{0,0},{0,0},{0,0},{0,0}};
-        rotation_list[3] = {{0,0},{0,0},{0,0},{0,0}};
+        rotation_list = {{{2,-2},{1,-1},{0,0},{-1,1}},
+                        {{-2,2},{-1,1},{0,0},{1,-1}}};
         break;
     case TYPE::T:
         data = {{0,1},{1,1},{1,0},{2,1}};
-        rotation_list[0] = {{-1,-1},{0,0},{1,-1},{1,1}};
-        rotation_list[1] = {{1,-1},{0,0},{1,1},{-1,1}};
-        rotation_list[2] = {{1,1},{0,0},{-1,1},{-1,-1}};
-        rotation_list[3] = {{-1,1},{0,0},{-1,-1},{1,-1}};
+        rotation_list = {{{-1,-1},{0,0},{1,-1},{1,1}},
+                        {{1,-1},{0,0},{1,1},{-1,1}},
+                        {{1,1},{0,0},{-1,1},{-1,-1}},
+                        {{-1,1},{0,0},{-1,-1},{1,-1}}};
         break;
     }
 
@@ -100,8 +95,7 @@ void Piece::translate(KEYS dir)
 
 void Piece::doRotation()
 {
-    rotation_value++;
-    if(rotation_value > 3)
+    if(rotation_value > rotation_list.size() - 1)
     {
         rotation_value = 0;
     }
@@ -114,6 +108,7 @@ void Piece::doRotation()
         data.at(i).x += rotation_list[rotation_value].at(i).x;
         data.at(i).y += rotation_list[rotation_value].at(i).y;
     }
+    rotation_value++;
 
 
 }

@@ -24,7 +24,7 @@ class Piece
         std::vector<v2d> data;
         std::vector<v2d> last;
         std::vector<v2d> base;
-        std::vector<v2d> rotation_list[4];
+        std::vector<std::vector<v2d>> rotation_list;
         v2df center;
         int rotation_value = 0;
 
