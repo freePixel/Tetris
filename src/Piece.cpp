@@ -14,25 +14,25 @@ Piece::Piece()
     switch(type)
     {
     case TYPE::S:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}};
+        data = {{0,1},{1,1},{1,0},{2,0}};
         break;
     case TYPE::Z:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{0,0},{1,0},{1,1},{2,1}};
         break;
     case TYPE::L:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{0,1},{0,0},{1,0},{2,0}};
         break;
     case TYPE::J:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{0,0},{1,0},{2,0},{2,1}};
         break;
     case TYPE::SQUARE:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{0,0},{0,1},{1,0},{1,1}};
         break;
     case TYPE::I:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{0,0},{1,0},{2,0},{3,0}};
         break;
     case TYPE::T:
-        data = {{0,1},{0,0},{1,0},{2,0},{3,0}}; //undone
+        data = {{1,0},{0,1},{1,1},{2,1}};
         break;
     }
 }
