@@ -36,6 +36,8 @@ void Draw::draw_grid(Grid& grid)
             case COLOR::BLUE:
                 SDL_SetRenderDrawColor(render, 0,0,255,0);
                 break;
+            case COLOR::ORANGE:
+                SDL_SetRenderDrawColor(render, 255,165,0,0);
             }
             SDL_FRect* rect = new SDL_FRect{(float)dx*x , (float)dy*y , (float)dx , (float)dy};
             SDL_RenderFillRectF(render,rect);

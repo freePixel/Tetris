@@ -12,7 +12,7 @@ enum KEYS
 
  enum COLOR
         {
-            RED = 1, GREEN , BLUE , BLACK
+            BLACK , RED , GREEN , BLUE , ORANGE
         };
 enum TYPE
         {

@@ -105,9 +105,10 @@ void Engine::logic()
             break;
         }
     }
+
     doMove(KEY);
 
-    if(ELAPSED % 1000 == 0)
+    if(ELAPSED % 1000 == 0 && KEY != KEYS::DOWN)
     {
         doMove(KEYS::DOWN);
     }

@@ -35,7 +35,7 @@ COLOR Grid::get_value(int x , int y)
 
 void Grid::set_value(int x , int y , COLOR value)
 {
-    if(value <= 0 || value > 7) throw std::invalid_argument("Expected value between 1 and 7");
+    if(value <  0 || value > 7) throw std::invalid_argument("Expected value between 1 and 7");
     int pos = to1D(x,y);
 
     data[pos] = value;

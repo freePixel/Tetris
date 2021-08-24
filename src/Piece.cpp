@@ -9,8 +9,8 @@ void Piece::undoMove()
 
 Piece::Piece()
 {
-    type = rand() % 3;
-    color = COLOR::BLUE;
+    type = rand() % 7;
+    color = (COLOR)(rand() % 4 + 1);
     switch(type)
     {
     case TYPE::S:
