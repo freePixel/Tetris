@@ -22,6 +22,8 @@ class Engine
         void confirmMove();
         void clearGridPiece(COLOR color);
 
+        void doMove(KEYS direction);
+
         Grid* grid;
         Draw* draw;
 

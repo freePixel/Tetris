@@ -11,6 +11,7 @@ class Piece
         Piece();
         virtual ~Piece();
         void translate(KEYS dir);
+        void undoMove();
         COLOR get_color();
         std::vector<v2d> get_data();
         v2d get_difference();

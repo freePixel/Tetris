@@ -6,7 +6,7 @@ enum INVALID
 };
 enum KEYS
         {
-            LEFT = 1 , DOWN , RIGHT , ROTATE
+            LEFT = 1 , DOWN , RIGHT , ROTATE , NONE
         };
 
 

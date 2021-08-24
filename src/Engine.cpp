@@ -46,11 +46,39 @@ bool Engine::isValid()
 
 }
 
+void Engine::doMove(KEYS direction)
+{
+    active_piece->translate(direction);
+    if(direction == KEYS::DOWN)
+    {
+        if(isValid())
+        {
+            confirmMove();
+        }
+        else{
+            clearGridPiece(active_piece->get_color());
+            active_piece->~Piece();
+            active_piece = new Piece();
+        }
+    }
+    if(direction == KEYS::LEFT || direction == KEYS::RIGHT)
+    {
+        if(isValid())
+        {
+            confirmMove();
+        }
+        else{
+            active_piece->undoMove();
+            clearGridPiece(active_piece->get_color());
+        }
+    }
+}
+
 void Engine::logic()
 {
 
     //PROCESS EVENTS
-    int KEY = 0;
+    KEYS KEY = KEYS::NONE;
     while(SDL_PollEvent(&event) > 0)
     {
         switch(event.type)
@@ -77,20 +105,11 @@ void Engine::logic()
             break;
         }
     }
-
+    doMove(KEY);
 
     if(ELAPSED % 1000 == 0)
     {
-        active_piece->translate(KEYS::DOWN);
-        if(isValid())
-        {
-            confirmMove();
-        }
-        else{
-            clearGridPiece(active_piece->get_color());
-            active_piece->~Piece();
-            active_piece = new Piece();
-        }
+        doMove(KEYS::DOWN);
     }
 
 

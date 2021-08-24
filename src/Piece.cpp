@@ -1,5 +1,12 @@
 #include "Piece.h"
 
+void Piece::undoMove()
+{
+    position.x -= difference.x;
+    position.y -= difference.y;
+    difference = {0,0};
+}
+
 Piece::Piece()
 {
     type = rand() % 3;
