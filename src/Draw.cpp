@@ -68,7 +68,6 @@ void Draw::draw_grid(Grid& grid, int score)
     if(renderScore) reload_score();
     const SDL_FRect* rect = new SDL_FRect{425,25,150,100};
     SDL_SetRenderDrawColor(render, 158,18,0,0);
-    SDL_RenderDrawRectF(render , rect);
     SDL_RenderCopyF(render , text , NULL , rect);
     delete rect;
     SDL_SetRenderDrawColor(render, 0,0,0,0);

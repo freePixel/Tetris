@@ -16,7 +16,7 @@ Grid::~Grid()
 
 int Grid::to1D(int x , int y)
 {
-    if(x < 0 || x >= DIM_X || y < 0 || y >= DIM_Y)
+    if(x < 0 || x >= DIM_X  || y >= DIM_Y)
     {
         std::string message = "invalid conversion: 0 < x < " + std::to_string(DIM_X) + " and 0 < y < " + std::to_string(DIM_Y) + ".";
         throw std::invalid_argument(message);

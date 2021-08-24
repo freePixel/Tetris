@@ -35,7 +35,7 @@ bool Engine::isValid()
     {
         v2d point = data.at(i);
 
-        if(point.x < 0 || point.x >= Grid::DIM_X || point.y < 0 || point.y >= Grid::DIM_Y) return false;
+        if(point.x < 0 || point.x >= Grid::DIM_X || point.y >= Grid::DIM_Y) return false;
         if(!grid->isFree(point.x , point.y))
         {
             return false;
@@ -132,7 +132,7 @@ void Engine::logic()
 
     doMove(KEY);
 
-    if(ELAPSED % 1000 == 0 && KEY != KEYS::DOWN)
+    if(ELAPSED % (DELAY * 62) == 0 && KEY != KEYS::DOWN)
     {
         doMove(KEYS::DOWN);
     }

@@ -33,7 +33,7 @@ class Engine
 
         SDL_Event event;
 
-        int DELAY = 50;
+        int DELAY = 16;
         int ELAPSED = 0;
 
 
