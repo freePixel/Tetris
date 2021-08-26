@@ -57,7 +57,7 @@ void Engine::doMove(KEYS direction)
         if(isValid())
         {
             confirmMove();
-            score++;
+            score+=5;
         }
         else{
             clearGridPiece(active_piece->get_color());
