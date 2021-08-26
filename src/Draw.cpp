@@ -57,11 +57,48 @@ Draw::~Draw()
 
 }
 
-void Draw::draw_grid(Grid& grid , int score , int level , int time)
+void Draw::draw_content(Grid& grid , int score , int level , int time)
+{
+
+    update_text(score , level , time);
+
+    SDL_RenderClear(render);
+
+    draw_grid(grid);
+    draw_text();
+
+
+    SDL_RenderPresent(render);
+}
+void Draw::load_text_texture(std::string text , int id)
+{
+    SDL_Surface* surface = TTF_RenderText_Solid(font , text.c_str(), {255,0,0,0});
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(render , surface);
+    SDL_FreeSurface(surface);
+    textures[id] = texture;
+}
+void Draw::draw_text()
+{
+    //draw text_arr[0] (score)
+    SDL_FRect* score_r = new SDL_FRect{400,0,200,100};
+    SDL_FRect* level_r = new SDL_FRect{450,100,100,100};
+    SDL_FRect* time_r = new SDL_FRect{425,200,150,100};
+
+    SDL_RenderCopyF(render , textures[50] , NULL , score_r);
+    SDL_RenderCopyF(render , textures[51] , NULL , level_r);
+    SDL_RenderCopyF(render , textures[52] , NULL , time_r);
+
+    delete score_r;
+    delete level_r;
+    delete time_r;
+
+
+}
+
+void Draw::draw_grid(Grid& grid)
 {
     int dx = (400) / Grid::DIM_X;
     int dy = (780) / Grid::DIM_Y;
-    SDL_RenderClear(render);
     for(int y=0;y<Grid::DIM_Y;y++)
     {
 
@@ -72,37 +109,34 @@ void Draw::draw_grid(Grid& grid , int score , int level , int time)
             SDL_FRect* rect = new SDL_FRect{(float)dx*x , (float)dy*y , (float)dx , (float)dy};
             SDL_RenderCopyF(render , textures[color] , NULL , rect);
             delete rect;
-
-
         }
     }
-
-
-
-
-    const SDL_FRect* rect = new SDL_FRect{425,25,150,100};
-    SDL_SetRenderDrawColor(render, 158,18,0,0);
-    delete rect;
-    SDL_SetRenderDrawColor(render, 0,0,0,0);
-    SDL_RenderPresent(render);
 }
 
 void Draw::update_text(int score , int level , int time)
 {
-
-    text[0] = fixed_string(score , 6);
-    text[1] = fixed_string(level , 2);
+    std::string  last_t0 = text_arr[0];
+    std::string  last_t1 = text_arr[1];
+    std::string  last_t2 = text_arr[2];
+    text_arr[0] = fixed_string(score , 6);
+    text_arr[1] = fixed_string(level , 2);
 
     int minutes = (int)(time / 60);
     int seconds = time % 60;
-    text[2] = fixed_string(minutes , 2) + ":" + fixed_string(seconds , 2);
+    text_arr[2] = fixed_string(minutes , 2) + ":" + fixed_string(seconds , 2);
+
+    if(last_t0 != text_arr[0]) load_text_texture(text_arr[0] , 50);
+    if(last_t1 != text_arr[1]) load_text_texture(text_arr[1] , 51);
+    if(last_t2 != text_arr[2]) load_text_texture(text_arr[2] , 52);
+
+
 }
 
 std::string Draw::fixed_string(int value , int digits)
 {
     int value_digits = 0;
     if(value != 0) value_digits = (int)log10(value);
-    int s_left = digits - value_digits;
+    int s_left = digits - value_digits - 1;
     std::string str = "";
     for(int i=0;i<s_left;i++) str += "0";
     return str + std::to_string(value);

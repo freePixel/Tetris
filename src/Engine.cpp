@@ -25,7 +25,7 @@ void Engine::confirmMove()
         v2d point = data.at(i);
         grid->set_value(point.x , point.y , active_piece->get_color());
     }
-    draw->draw_grid(*grid , score , 0 , 0);
+    draw->draw_content(*grid , score ,level,(int)seconds);
 }
 
 
@@ -64,11 +64,11 @@ void Engine::doMove(KEYS direction)
             active_piece->~Piece();
             active_piece = new Piece();
             score += grid->simplifyGrid();
+            level = (int)(score / 1000) + 1;
             if(!isValid())
             {
                 int a = 0;
-                std::cout << "invalid position" << "\n";
-                std::cin >> a;
+                std::cout << "Game over" << "\n";
                 isRunning = false;
             }
             else{
@@ -147,16 +147,18 @@ KEYS Engine::get_key()
 
 void Engine::wait()
 {
-    float dt = 1 - 0.05 * level;
+    float dt = 1.05 - 0.05 * level;
     if (level > 15) dt = 0.25;
     if(ELAPSED > dt * 1000000)
     {
         ELAPSED -= dt * 1000000;
         doMove(KEYS::DOWN);
+        seconds += dt;
     }
     int var = (int)(1000000 / FPS);
     std::this_thread::sleep_for(std::chrono::microseconds(var));
     ELAPSED += var;
+    draw->draw_content(*grid , score ,level,(int)seconds);
 }
 void Engine::run()
 {

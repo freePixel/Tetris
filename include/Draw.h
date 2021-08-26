@@ -16,7 +16,7 @@ class Draw
         Draw();
         virtual ~Draw();
 
-        void draw_grid(Grid& grid , int score , int level , int time);
+        void draw_content(Grid& grid , int score , int level , int time);
 
     protected:
 
@@ -24,12 +24,16 @@ class Draw
         void loadTextures();
         void loadTexture(std::string path , int id);
 
+        void draw_grid(Grid& grid);
+        void draw_text();
+
+        void load_text_texture(std::string text , int id);
 
         SDL_Window* window = nullptr;
         SDL_Renderer* render = nullptr;
         TTF_Font *font = nullptr;
 
-        std::string text[3];
+        std::string text_arr[3];
         void update_text(int score , int level , int time);
         std::string fixed_string(int value , int digits);
 

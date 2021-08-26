@@ -37,7 +37,8 @@ class Engine
         int level = 1;
         int score = 0;
         int ELAPSED = 0;
-        const float FPS = 60.0;
+        float seconds = 0;
+        const float FPS = 30.0;
 
 
 };
