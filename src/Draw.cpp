@@ -75,6 +75,10 @@ void Draw::load_text_texture(std::string text , int id)
     SDL_Surface* surface = TTF_RenderText_Solid(font , text.c_str(), {255,255,200,0});
     SDL_Texture* texture = SDL_CreateTextureFromSurface(render , surface);
     SDL_FreeSurface(surface);
+    if(textures[id] != nullptr)
+    {
+        //SDL_DestroyTexture(textures[id]);
+    }
     textures[id] = texture;
 }
 void Draw::draw_text()
