@@ -14,22 +14,51 @@ Draw::Draw()
     {
         std::cout << "error loading texture" << "\n";
     }
-    reload_score();
+    loadTextures();
+
+
 }
+void Draw::loadTexture(std::string path , int id)
+{
+    SDL_Surface* surface = IMG_Load(path.c_str());
+    if(surface == NULL)
+    {
+        std::cout << "error loading surface: " << path << "\n";
+    }
+    else{
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(render , surface);
+        SDL_FreeSurface(surface);
+        if(texture == NULL) std::cout << "error loading texture " << path << "\n";
+        else{
+            textures[id] = texture;
+        }
+    }
+}
+void Draw::loadTextures()
+{
+    loadTexture("textures/red.png", (int)COLOR::RED);
+    loadTexture("textures/blue.png", (int)COLOR::BLUE);
+    loadTexture("textures/green.png", (int)COLOR::GREEN);
+    loadTexture("textures/black.png", (int)COLOR::BLACK);
+    loadTexture("textures/orange.png", (int)COLOR::ORANGE);
+}
+
 
 Draw::~Draw()
 {
     SDL_DestroyWindow(window);
+    //dealocatte textures
+    for(auto i = textures.begin();i != textures.end();i++)
+    {
+        SDL_DestroyTexture(i->second);
+    }
     SDL_DestroyRenderer(render);
-    SDL_DestroyTexture(text);
+
 
 }
 
-void Draw::draw_grid(Grid& grid, int score)
+void Draw::draw_grid(Grid& grid , int score , int level , int time)
 {
-    std::string last = score_info;
-    score_info = get_score_string(score);
-    if(last != score_info) renderScore = true;
     int dx = (400) / Grid::DIM_X;
     int dy = (780) / Grid::DIM_Y;
     SDL_RenderClear(render);
@@ -38,68 +67,45 @@ void Draw::draw_grid(Grid& grid, int score)
 
         for(int x=0;x<Grid::DIM_X;x++)
         {
-            switch(grid.get_value(x , y))
-            {
-            case COLOR::BLACK:
-                SDL_SetRenderDrawColor(render, 0,0,0,0);
-                break;
-            case COLOR::RED:
-                SDL_SetRenderDrawColor(render, 255,0,0,0);
-                break;
-            case COLOR::GREEN:
-                SDL_SetRenderDrawColor(render, 0,255,0,0);
-                break;
-            case COLOR::BLUE:
-                SDL_SetRenderDrawColor(render, 0,0,255,0);
-                break;
-            case COLOR::ORANGE:
-                SDL_SetRenderDrawColor(render, 255,165,0,0);
-            }
+            COLOR color = grid.get_value(x , y);
+
             SDL_FRect* rect = new SDL_FRect{(float)dx*x , (float)dy*y , (float)dx , (float)dy};
-            SDL_RenderFillRectF(render,rect);
+            SDL_RenderCopyF(render , textures[color] , NULL , rect);
             delete rect;
 
 
         }
     }
 
-    draw_border();
 
-    if(renderScore) reload_score();
+
+
     const SDL_FRect* rect = new SDL_FRect{425,25,150,100};
     SDL_SetRenderDrawColor(render, 158,18,0,0);
-    SDL_RenderCopyF(render , text , NULL , rect);
     delete rect;
     SDL_SetRenderDrawColor(render, 0,0,0,0);
     SDL_RenderPresent(render);
 }
 
-std::string Draw::get_score_string(int score)
+void Draw::update_text(int score , int level , int time)
 {
-    int digits = 0;
-    if(score != 0) digits = (int)log10(score);
-    int left = 6 - digits;
+
+    text[0] = fixed_string(score , 6);
+    text[1] = fixed_string(level , 2);
+
+    int minutes = (int)(time / 60);
+    int seconds = time % 60;
+    text[2] = fixed_string(minutes , 2) + ":" + fixed_string(seconds , 2);
+}
+
+std::string Draw::fixed_string(int value , int digits)
+{
+    int value_digits = 0;
+    if(value != 0) value_digits = (int)log10(value);
+    int s_left = digits - value_digits;
     std::string str = "";
-    for(int i=0;i<left;i++) str += "0";
-    return str + std::to_string(score);
+    for(int i=0;i<s_left;i++) str += "0";
+    return str + std::to_string(value);
 }
 
-void Draw::reload_score()
-{
-    if(text != nullptr) SDL_DestroyTexture(text);
-    SDL_Surface* surface = TTF_RenderText_Solid(font , score_info.c_str(), {127,127,255,0});
-    text = SDL_CreateTextureFromSurface( render, surface );
-    SDL_FreeSurface(surface);
 
-
-
-
-    renderScore = false;
-}
-
-void Draw::draw_border()
-{
-    SDL_SetRenderDrawColor(render, 255,255,255,0);
-    SDL_RenderDrawLineF(render , 0 , 780 , 400 , 780);
-    SDL_RenderDrawLineF(render , 400 , 0 , 400 , 780);
-}

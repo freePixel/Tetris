@@ -9,29 +9,34 @@
 #include <iostream>
 #include <math.h>
 #include <SDL_ttf.h>
+#include <map>
 class Draw
 {
     public:
         Draw();
         virtual ~Draw();
 
-        void draw_grid(Grid& grid , int score);
+        void draw_grid(Grid& grid , int score , int level , int time);
 
     protected:
 
     private:
-        const int WINDOW_X = 600;
-        const int WINDOW_Y = 800;
+        void loadTextures();
+        void loadTexture(std::string path , int id);
+
+
         SDL_Window* window = nullptr;
         SDL_Renderer* render = nullptr;
-        std::string score_info;
-        void draw_border();
-        void reload_score();
-        std::string get_score_string(int score);
         TTF_Font *font = nullptr;
-        SDL_Texture* text = nullptr;
-        bool renderScore = false;
 
+        std::string text[3];
+        void update_text(int score , int level , int time);
+        std::string fixed_string(int value , int digits);
+
+        std::map<int , SDL_Texture*> textures;
+
+        const int WINDOW_X = 600;
+        const int WINDOW_Y = 800;
 
 };
 

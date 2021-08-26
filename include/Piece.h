@@ -10,24 +10,28 @@ class Piece
     public:
         Piece();
         virtual ~Piece();
+
         void translate(KEYS dir);
         void undoMove();
         void undoRotation();
-        std::vector<v2d> get_lastPosition();
-        COLOR get_color();
-        std::vector<v2d> get_data();
         void doRotation();
 
+        COLOR get_color();
+
+        std::vector<v2d> get_data();
+        std::vector<v2d> get_lastPosition();
+
     private:
-        static int pieceCounter;
-        int type;
-        COLOR color;
         std::vector<v2d> data;
         std::vector<v2d> last;
         std::vector<v2d> base;
         std::vector<std::vector<v2d>> rotation_list;
-        v2df center;
+
+        static int pieceCounter;
         int rotation_value = 0;
+        int type;
+        COLOR color;
+        v2df center;
 
 
 };

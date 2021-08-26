@@ -1,6 +1,10 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include <time.h>
+#include <thread>
+
+
 #include "Draw.h"
 #include "Grid.h"
 #include "Piece.h"
@@ -13,28 +17,27 @@ class Engine
 
     private:
 
-        void render();
         void logic();
         void init();
 
-
         bool isValid();
-        void confirmMove();
-        void clearGridPiece(COLOR color);
-
-        void doMove(KEYS direction);
-
-        Grid* grid;
-        Draw* draw;
-        int score = 0;
-        Piece* active_piece = nullptr;
-
         bool isRunning = true;
 
+        void confirmMove();
+        void clearGridPiece(COLOR color);
+        void doMove(KEYS direction);
+        void wait();
+
+        Grid* grid          = nullptr;
+        Draw* draw          = nullptr;
+        Piece* active_piece = nullptr;
+        KEYS get_key();
         SDL_Event event;
 
-        int DELAY = 16;
+        int level = 1;
+        int score = 0;
         int ELAPSED = 0;
+        const float FPS = 60.0;
 
 
 };

@@ -84,6 +84,7 @@ void Grid::clear_value(int x , int y)
 
 bool Grid::isFree(int x , int y)
 {
+    if(y < 0) return true;
     if(data[to1D(x , y)] == COLOR::BLACK) return true;
     else{
         return false;

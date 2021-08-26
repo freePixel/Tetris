@@ -73,6 +73,12 @@ Piece::Piece()
         break;
     }
 
+    int shift_amount = (rand() % 6) + 1;
+    for(int i=0;i<data.size();i++)
+    {
+        data.at(i).x += shift_amount;
+    }
+
 }
 std::vector<v2d> Piece::get_data()
 {

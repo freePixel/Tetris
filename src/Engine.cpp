@@ -5,6 +5,7 @@ Engine::~Engine()
     SDL_Quit();
     delete draw;
     delete grid;
+
 }
 void Engine::clearGridPiece(COLOR color)
 {
@@ -15,7 +16,7 @@ void Engine::clearGridPiece(COLOR color)
         grid->set_value(point.x, point.y, color);
     }
 }
-void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
+void Engine::confirmMove()
 {
 
     std::vector<v2d> data = active_piece->get_data();
@@ -24,6 +25,7 @@ void Engine::confirmMove() // USE THIS FUNCTION IF AND ONLY IF THE MOVE IS VALID
         v2d point = data.at(i);
         grid->set_value(point.x , point.y , active_piece->get_color());
     }
+    draw->draw_grid(*grid , score , 0 , 0);
 }
 
 
@@ -55,6 +57,7 @@ void Engine::doMove(KEYS direction)
         if(isValid())
         {
             confirmMove();
+            score++;
         }
         else{
             clearGridPiece(active_piece->get_color());
@@ -63,6 +66,9 @@ void Engine::doMove(KEYS direction)
             score += grid->simplifyGrid();
             if(!isValid())
             {
+                int a = 0;
+                std::cout << "invalid position" << "\n";
+                std::cin >> a;
                 isRunning = false;
             }
             else{
@@ -101,7 +107,14 @@ void Engine::doMove(KEYS direction)
 void Engine::logic()
 {
 
-    //PROCESS EVENTS
+    KEYS KEY = get_key();
+    doMove(KEY);
+    wait();
+
+}
+
+KEYS Engine::get_key()
+{
     KEYS KEY = KEYS::NONE;
     while(SDL_PollEvent(&event) > 0)
     {
@@ -129,20 +142,21 @@ void Engine::logic()
             break;
         }
     }
+    return KEY;
+}
 
-    doMove(KEY);
-
-    if(ELAPSED % (DELAY * 62) == 0 && KEY != KEYS::DOWN)
+void Engine::wait()
+{
+    float dt = 1 - 0.05 * level;
+    if (level > 15) dt = 0.25;
+    if(ELAPSED > dt * 1000000)
     {
+        ELAPSED -= dt * 1000000;
         doMove(KEYS::DOWN);
     }
-
-
-
-}
-void Engine::render()
-{
-    draw->draw_grid(*grid , score);
+    int var = (int)(1000000 / FPS);
+    std::this_thread::sleep_for(std::chrono::microseconds(var));
+    ELAPSED += var;
 }
 void Engine::run()
 {
@@ -150,9 +164,8 @@ void Engine::run()
     while(isRunning)
     {
         logic();
-        render();
-        ELAPSED += DELAY;
-        SDL_Delay(DELAY);
+
+
     }
 
 }
