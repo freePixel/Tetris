@@ -72,7 +72,7 @@ void Draw::draw_content(Grid& grid , int score , int level , int time)
 }
 void Draw::load_text_texture(std::string text , int id)
 {
-    SDL_Surface* surface = TTF_RenderText_Solid(font , text.c_str(), {255,200,222,150});
+    SDL_Surface* surface = TTF_RenderText_Solid(font , text.c_str(), {255,255,200,0});
     SDL_Texture* texture = SDL_CreateTextureFromSurface(render , surface);
     SDL_FreeSurface(surface);
     textures[id] = texture;
@@ -80,9 +80,9 @@ void Draw::load_text_texture(std::string text , int id)
 void Draw::draw_text()
 {
     //draw text_arr[0] (score)
-    SDL_FRect* score_r = new SDL_FRect{410,0,190,100};
-    SDL_FRect* level_r = new SDL_FRect{410,600,190,100};
-    SDL_FRect* time_r = new SDL_FRect{425,700,150,100};
+    SDL_FRect* score_r = new SDL_FRect{415,0,180,78};
+    SDL_FRect* level_r = new SDL_FRect{415,600,180,78};
+    SDL_FRect* time_r = new SDL_FRect{435,700,125,78};
 
     SDL_RenderCopyF(render , textures[50] , NULL , score_r);
     SDL_RenderCopyF(render , textures[51] , NULL , level_r);
