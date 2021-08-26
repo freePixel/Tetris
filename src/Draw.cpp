@@ -77,7 +77,7 @@ void Draw::load_text_texture(std::string text , int id)
     SDL_FreeSurface(surface);
     if(textures[id] != nullptr)
     {
-        //SDL_DestroyTexture(textures[id]);
+        SDL_DestroyTexture(textures[id]);
     }
     textures[id] = texture;
 }
