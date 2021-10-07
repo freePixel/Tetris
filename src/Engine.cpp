@@ -63,7 +63,9 @@ void Engine::doMove(KEYS direction)
             clearGridPiece(active_piece->get_color());
             active_piece->~Piece();
             active_piece = new Piece();
-            score += grid->simplifyGrid();
+            int sc = grid->simplifyGrid();
+            if(sc != 0) audio.play_audio(1);
+            score += sc;
             level = (int)(score / 1000) + 1;
             if(!isValid())
             {
@@ -140,6 +142,10 @@ KEYS Engine::get_key()
                     break;
             }
             break;
+
+        case SDL_MOUSEBUTTONDOWN:
+        
+        break;
         }
     }
     return KEY;
@@ -167,7 +173,6 @@ void Engine::run()
     {
         logic();
 
-
     }
 
 }
@@ -180,5 +185,10 @@ void Engine::init()
     active_piece = new Piece();
 
     confirmMove();
+
+    audio.load_audio("theme.wav" , 0);
+    audio.load_audio("place.wav" , 1);
+    audio.disable();
+    audio.play_audio(0);
 
 }

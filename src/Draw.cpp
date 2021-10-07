@@ -12,7 +12,7 @@ Draw::Draw()
     font = TTF_OpenFont(file , 24);
     if(font == NULL)
     {
-        std::cout << "error loading texture" << "\n";
+        std::cout << "error loading font" << "\n";
     }
     loadTextures();
 
@@ -41,6 +41,7 @@ void Draw::loadTextures()
     loadTexture("textures/green.png", (int)COLOR::GREEN);
     loadTexture("textures/black.png", (int)COLOR::BLACK);
     loadTexture("textures/orange.png", (int)COLOR::ORANGE);
+    loadTexture("textures/audio.png" , 75);
 }
 
 
@@ -60,13 +61,16 @@ Draw::~Draw()
 void Draw::draw_content(Grid& grid , int score , int level , int time)
 {
 
-    update_text(score , level , time);
+    update_text(score , level , time);
 
     SDL_RenderClear(render);
 
     draw_grid(grid);
     draw_text();
 
+    SDL_FRect* r = new SDL_FRect{435 , 250 , 40 , 40};
+    SDL_RenderCopyF(render , textures[75] , NULL , r);
+    delete r;
 
     SDL_RenderPresent(render);
 }
