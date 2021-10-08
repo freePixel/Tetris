@@ -18,8 +18,8 @@ class Audio
     public:
         void load_audio(const char*  , int id);
         void play_audio(int id);
-        void enable(){active = true;}
-        void disable(){active = false;}
+        void enable();
+        void disable();
     private:
     SDL_AudioDeviceID deviceID;
     std::map<int , wave> wv_map;

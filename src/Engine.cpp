@@ -153,8 +153,8 @@ KEYS Engine::get_key()
 
 void Engine::wait()
 {
-    float dt = 1.05 - 0.05 * level;
-    if (level > 15) dt = 0.25;
+    float dt = 0.65 - 0.05 * level;
+    if (level > 8) dt = 0.25;
     if(ELAPSED > dt * 1000000)
     {
         ELAPSED -= dt * 1000000;
@@ -164,6 +164,7 @@ void Engine::wait()
     int var = (int)(1000000 / FPS);
     std::this_thread::sleep_for(std::chrono::microseconds(var));
     ELAPSED += var;
+
     draw->draw_content(*grid , score ,level,(int)seconds);
 }
 void Engine::run()
@@ -186,9 +187,8 @@ void Engine::init()
 
     confirmMove();
 
-    audio.load_audio("theme.wav" , 0);
     audio.load_audio("place.wav" , 1);
-    audio.disable();
-    audio.play_audio(0);
+
+    
 
 }

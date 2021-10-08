@@ -16,3 +16,13 @@ void Audio::play_audio(int id)
     std::cout << SDL_GetError() << "\n";
     SDL_PauseAudioDevice(deviceID , 0);
 }
+
+void Audio::enable()
+{
+    SDL_UnlockAudio();
+}
+
+void Audio::disable()
+{
+    SDL_LockAudio();
+}
