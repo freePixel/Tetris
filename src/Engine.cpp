@@ -70,8 +70,10 @@ void Engine::doMove(KEYS direction)
             if(!isValid())
             {
                 int a = 0;
-                std::cout << "Game over" << "\n";
+                std::cout << "Game over!" << "\n";
+                std::cout << "Score: " << score << "\n";
                 isRunning = false;
+                return;
             }
             else{
                 confirmMove();
@@ -111,6 +113,7 @@ void Engine::logic()
 
     KEYS KEY = get_key();
     doMove(KEY);
+    if(!isRunning) return;
     wait();
 
 }
@@ -187,7 +190,7 @@ void Engine::init()
 
     confirmMove();
 
-    audio.load_audio("place.wav" , 1);
+    audio.load_audio("../src/place.wav" , 1);
 
     
 

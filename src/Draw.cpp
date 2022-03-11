@@ -8,7 +8,7 @@ Draw::Draw()
     TTF_Init();
     window = SDL_CreateWindow("Tetris",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WINDOW_X,WINDOW_Y,0);
     render = SDL_CreateRenderer(window , -1 , 0);
-    const char* file = "Fairfax-MJ0J.ttf";
+    const char* file = "../src/Fairfax-MJ0J.ttf";
     font = TTF_OpenFont(file , 24);
     if(font == NULL)
     {
@@ -36,12 +36,12 @@ void Draw::loadTexture(std::string path , int id)
 }
 void Draw::loadTextures()
 {
-    loadTexture("textures/red.png", (int)COLOR::RED);
-    loadTexture("textures/blue.png", (int)COLOR::BLUE);
-    loadTexture("textures/green.png", (int)COLOR::GREEN);
-    loadTexture("textures/black.png", (int)COLOR::BLACK);
-    loadTexture("textures/orange.png", (int)COLOR::ORANGE);
-    loadTexture("textures/audio.png" , 75);
+    loadTexture("../src/textures/red.png", (int)COLOR::RED);
+    loadTexture("../src/textures/blue.png", (int)COLOR::BLUE);
+    loadTexture("../src/textures/green.png", (int)COLOR::GREEN);
+    loadTexture("../src/textures/black.png", (int)COLOR::BLACK);
+    loadTexture("../src/textures/orange.png", (int)COLOR::ORANGE);
+    loadTexture("../src/textures/audio.png" , 75);
 }
 
 
